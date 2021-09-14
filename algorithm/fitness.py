@@ -1,12 +1,12 @@
 class Fitness:
     def __init__(self, route):
         self.route = route
-        self.distance = 0
+        self.time = 0
         self.fitness= 0.0
     
-    def routeDistance(self):
-        if self.distance ==0:
-            pathDistance = 0
+    def routeTime(self):
+        if self.time == 0:
+            pathTime = 0
             for i in range(0, len(self.route)):
                 fromRide = self.route[i]
                 toRide = None
@@ -14,11 +14,11 @@ class Fitness:
                     toRide = self.route[i + 1]
                 else:
                     toRide = self.route[0]
-                pathDistance += fromRide.distance(toRide)
-            self.distance = pathDistance
-        return self.distance
+                pathTime += fromRide.time(toRide)
+            self.time = pathTime
+        return self.time
     
     def routeFitness(self):
         if self.fitness == 0:
-            self.fitness = 1 / float(self.routeDistance())
+            self.fitness = 1 / float(self.routeTime())
         return self.fitness

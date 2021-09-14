@@ -1,4 +1,5 @@
 ID,RIDE_NAME,Ride_duration_min,Ride_duration_sec,latitude,longitude,wait_times
+0,Entrance,0,0,33.809479,-117.918985,0
 1,Disneyland Railroad,22,1320,33.81012867227412,-117.91897673952292,20
 2,Great Moments with Mr. Lincoln,16,960,33.81039372101548,-117.91849169618011,0
 3,The Disney Gallery,15,900,33.81037710503839,-117.91852290554488,0
