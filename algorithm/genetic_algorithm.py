@@ -1,11 +1,12 @@
 import random
-from fitness import determine_fitness
+from fitness import Fitness
 
 
 class GeneticAlgorithm:
     def __init__(self, ride_dict, travel_times):
         self.ride_dict = ride_dict
         self.travel_times = travel_times
+        self.fitness = Fitness(ride_dict, travel_times)
 
     def determine_optimal_route(self, ride_choices):
         population = self.generate_population(ride_choices)
@@ -17,7 +18,7 @@ class GeneticAlgorithm:
         population = self.sort_by_fitness(population)
         return(
             population[0],
-            round(determine_fitness(population[0], self.ride_dict, self.travel_times), 2)
+            self.fitness.get_full_route_stats(population[0])
         )
 
 
@@ -31,7 +32,7 @@ class GeneticAlgorithm:
 
 
     def sort_by_fitness(self, population):
-        population.sort(key=lambda route: determine_fitness(route, self.ride_dict, self.travel_times))
+        population.sort(key=lambda route: self.fitness.determine_fitness(route))
         return population
 
 
