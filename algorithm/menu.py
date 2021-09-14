@@ -1,6 +1,7 @@
 import csv
 import os
 import sys
+from genetic_algorithm import GeneticAlgorithm
 from ride import Ride
 
 
@@ -22,6 +23,13 @@ with open(os.path.join(os.path.dirname(sys.argv[0]), '../data/rides.csv')) as cs
                 float(row[5]),
                 int(row[6])
             )
+
+travel_times = []
+
+with open(os.path.join(os.path.dirname(sys.argv[0]), '../data/travel_times.csv')) as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    for row in csv_reader:
+       travel_times.append([float(time) for time in row])
 
 ride_choices = {}
 print("Ride Options:\n")
@@ -59,3 +67,6 @@ while True:
     else:
         print("Ride not found, check the options for a list of rides\n")
         continue
+
+algorithm = GeneticAlgorithm(ride_dict, travel_times)
+print(algorithm.determine_optimal_route(ride_choices))
