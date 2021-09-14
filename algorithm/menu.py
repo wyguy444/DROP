@@ -59,6 +59,3 @@ while True:
     else:
         print("Ride not found, check the options for a list of rides\n")
         continue
-
-
-
