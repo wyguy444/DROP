@@ -5,7 +5,7 @@ import sys
 
 ride_list = []
 
-with open(os.path.join(os.path.dirname(sys.argv[0]), 'rides.csv')) as csv_file:
+with open(os.path.join(os.path.dirname(sys.argv[0]), '../data/rides.csv')) as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count = 0
     for row in csv_reader:
