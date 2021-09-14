@@ -22,7 +22,7 @@ for from_ride in ride_coordinates:
     row = []
     for to_ride in ride_coordinates:
         distance = geopy.distance.distance(ride_coordinates[from_ride], ride_coordinates[to_ride]).km
-        time = distance*12
+        time = distance*20
         row.append(round(time, 2))
     rows.append(row)
 
