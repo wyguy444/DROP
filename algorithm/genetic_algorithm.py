@@ -25,7 +25,7 @@ class GeneticAlgorithm:
     def generate_population(self, ride_choices):
         population = []
         for i in range(100):
-            ride_id_list = list(ride_choices.keys())
+            ride_id_list = ride_choices.copy()
             random.shuffle(ride_id_list)
             population.append(ride_id_list)
         return population
@@ -71,8 +71,8 @@ class GeneticAlgorithm:
             child = []
             childP1 = []
             childP2 = []
-            parent1 = pair[0]
-            parent2 = pair[1]
+            parent1 = pair[0].copy()
+            parent2 = pair[1].copy()
             
             geneA = int(random.random() * len(parent1))
             geneB = int(random.random() * len(parent1))
@@ -82,8 +82,10 @@ class GeneticAlgorithm:
 
             for i in range(startGene, endGene):
                 childP1.append(parent1[i])
-                
-            childP2 = [item for item in parent2 if item not in childP1]
+            
+            for item in childP1:
+                parent2.remove(item)
+            childP2 = parent2
 
             child = childP1 + childP2
             population.append(child)
