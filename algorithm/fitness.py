@@ -29,7 +29,7 @@ class Fitness:
             hours = int(time/60)
             time += self.ride_dict[ride_id].wait_time * self.ride_multipliers[hours % 14]
             time += self.ride_dict[ride_id].duration
-            if route.index(ride_id) < (len(route) - 1):
+            if step < (len(route) - 1):
                 time += self.travel_times[ride_id][route[step + 1]]
             step += 1
         time += self.travel_times[route[-1]][0]
@@ -48,7 +48,7 @@ class Fitness:
             route_ride_list[-1].wait_time = ride_wait
             time += ride_wait
             time += self.ride_dict[ride_id].duration
-            if route.index(ride_id) < (len(route) - 1):
+            if step < (len(route) - 2):
                 tt = self.travel_times[ride_id][route[step + 1]]
                 travel_time_list.append(tt)
                 time += tt

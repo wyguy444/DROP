@@ -77,14 +77,15 @@ route_ride_list = details[2]
 
 with open(os.path.join(os.path.dirname(sys.argv[0]), '../data/output.csv'), 'w', newline='') as csv_file:
     csvwriter = csv.writer(csv_file)
-    csvwriter.writerow(['id', 'name', 'travel_time', 'travel_distance', 'wait_time', 'duration', 'latitude', 'longitude'])
-    csvwriter.writerow([0, 'Entrance', 0, 0, 0, 0, 33.809479, -117.918985])
+    csvwriter.writerow(['order', 'id', 'name', 'travel_time', 'travel_distance', 'wait_time', 'duration', 'latitude', 'longitude'])
+    csvwriter.writerow([0, 0, 'Entrance', 0, 0, 0, 0, 33.809479, -117.918985])
     total_time = 0
     step = 0
     for ride in route_ride_list:
         step_time = time_list[step]
         total_time += step_time
         csvwriter.writerow([
+            step + 1,
             ride.ride_id,
             ride.name,
             step_time,
@@ -97,4 +98,4 @@ with open(os.path.join(os.path.dirname(sys.argv[0]), '../data/output.csv'), 'w',
         step += 1
     step_time = time_list[-1]
     total_time += step_time
-    csvwriter.writerow([0, 'Entrance', step_time, round(step_time/20, 2), 0, 0, 33.809479, -117.918985])
+    csvwriter.writerow([step + 1, 0, 'Entrance', step_time, round(step_time/20, 2), 0, 0, 33.809479, -117.918985])
