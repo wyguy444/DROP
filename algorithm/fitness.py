@@ -30,13 +30,12 @@ class Fitness:
             time += self.ride_dict[ride_id].wait_time * self.ride_multipliers[hours % 14]
             time += self.ride_dict[ride_id].duration
             if route.index(ride_id) < (len(route) - 1):
-                time += self.travel_times[ride_id][step + 1]
+                time += self.travel_times[ride_id][route[step + 1]]
             step += 1
         time += self.travel_times[route[-1]][0]
         return time
 
     def get_full_route_stats(self, route):
-        print(route)
         travel_time_list = []
         route_ride_list = []
         time = self.travel_times[0][route[0]]
@@ -50,8 +49,7 @@ class Fitness:
             time += ride_wait
             time += self.ride_dict[ride_id].duration
             if route.index(ride_id) < (len(route) - 1):
-                tt = self.travel_times[ride_id][step+1]
-                print(tt)
+                tt = self.travel_times[ride_id][route[step + 1]]
                 travel_time_list.append(tt)
                 time += tt
             step += 1

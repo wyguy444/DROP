@@ -74,7 +74,7 @@ class GeneticAlgorithm:
             parent1 = pair[0].copy()
             parent2 = pair[1].copy()
             
-            geneA = int(random.random() * len(parent1))
+            geneA = 0
             geneB = int(random.random() * len(parent1))
             
             startGene = min(geneA, geneB)
@@ -88,5 +88,5 @@ class GeneticAlgorithm:
             childP2 = parent2
 
             child = childP1 + childP2
-            population.append(child)
+            population.append(child.copy())
         return population
