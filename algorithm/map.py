@@ -1,4 +1,6 @@
 import folium
+import os
+import sys
 import numpy as np
 import pandas as pd
 from folium.plugins import HeatMap
@@ -44,6 +46,6 @@ def generate_map(data_file: str, html_file: str):
 
 if __name__ == "__main__":
     generate_map(
-        "/Users/vchaturvedi/workspaces/DROP/data/output.csv",
-        "/Users/vchaturvedi/workspaces/DROP/data/route.html",
+        os.path.join(os.path.dirname(sys.argv[0]), '../data/output.csv'),
+        os.path.join(os.path.dirname(sys.argv[0]), '../data/routes.html'),
     )

@@ -2,6 +2,8 @@ import random
 from fitness import Fitness
 
 
+POPULATION_SIZE = 600
+GENERATIONS = 600
 class GeneticAlgorithm:
     def __init__(self, ride_dict, travel_times):
         self.ride_dict = ride_dict
@@ -10,7 +12,7 @@ class GeneticAlgorithm:
 
     def determine_optimal_route(self, ride_choices):
         population = self.generate_population(ride_choices)
-        for i in range(50):
+        for i in range(GENERATIONS):
             population = self.sort_by_fitness(population)
             mating_pool = self.generate_mating_pool(population)
             population = self.breed_next_generation(mating_pool)
@@ -24,7 +26,7 @@ class GeneticAlgorithm:
 
     def generate_population(self, ride_choices):
         population = []
-        for i in range(100):
+        for i in range(POPULATION_SIZE):
             ride_id_list = ride_choices.copy()
             random.shuffle(ride_id_list)
             population.append(ride_id_list)
@@ -37,7 +39,7 @@ class GeneticAlgorithm:
 
 
     def generate_mating_pool(self, population):
-        return population[:50]
+        return population[:int(POPULATION_SIZE/2)]
 
 
     def breed_next_generation(self, mating_pool):
@@ -60,8 +62,8 @@ class GeneticAlgorithm:
 
     def generate_mating_pairs(self, mating_pool):
         pairs = []
-        for i in range(100):
-            pairs.append(random.choices(mating_pool, weights=[50-j for j in range(50)], k=2))
+        for i in range(POPULATION_SIZE):
+            pairs.append(random.choices(mating_pool, weights=[int(POPULATION_SIZE/2)-j for j in range(int(POPULATION_SIZE/2))], k=2))
         return pairs
 
 
